@@ -100,11 +100,12 @@ function gerarPDF() {
                 alignment: 'center',
                 margin: [0, 20, 0, 20],
                 
+                
             
             },
             subheader: {
-                 bold:true,
-                fontSize: 8,
+                bold:true,
+                fontSize: 10,
                 margin: [0, 5, 0, 5],
                
             }

@@ -44,15 +44,17 @@ function gerarPDF() {
             image: logo,
             width: 150, // Altere o tamanho conforme necessário
             alignment: 'center',
-            margin: [0, 0, 0, 10] // Margens em cima e embaixo
+            margin: [0, 0, 0, 10], // Margens em cima e embaixo
         },
         // Adiciona um retângulo de fundo para o cabeçalho
             {
-                text: 'RELATORIO DE VIAGEM',
+                text: 'RELATÓRIO DE VIAGEM',
                 style: 'header',
                 fillColor: '#f0f0f0', // Cor de fundo
-                margin: [0, 10, 0, 15]
+                margin: [5, 10, 0, 10]
             },
+
+            { text: dataTexto, alignment: 'right', style: 'subheader', margin: [0, 0, 0, 20] },
 
             
             
@@ -68,53 +70,64 @@ function gerarPDF() {
             { text: `DATA SAIDA: ${data_saida}      ||     DATA RETORNO:   ${data_retorno}    ||    HORA DA SAÍDA:   ${hora_saida}     ||     HORA DO RETORNO : ${hora_retorno}   ||`, style: 'subheader', fillColor: '#f9f9f9', margin: [0, 2, 0, 15] }, 
             { text: '--------------------------------------------------------- RELATÓRIO -----------------------------------------------------',alignment:'center', bold:true, margin: [0, 0, 0, 15] },
             
-            { text: ` : ${relatorio}`, style: 'subheader', margin: [0, 5, 0, 10],fillColor: '#0000FF' },
+            { text: `${relatorio}`, style: 'subheader', margin: [0, 5, 0, 15],fillColor: '#0000FF' },
 
 
-            { text: '---------------------------------------------- ÁREA DE AUTENTICAÇÃO -------------------------------------------',alignment:'center', bold:true, margin: [0, 0, 0, 30] },
+            { text: '---------------------------------------------- ÁREA DE AUTENTICAÇÃO -------------------------------------------',alignment:'center', bold:true, margin: [0, 0, 0, 20] },
             
          
 
-            { text: 'ASSINATURA DO SERVIDOR(A):',alignment: 'center', margin: [40, 0, 0, 20] },
-            { text:'____________________________________________________________________________________',alignment: 'center',style:'subheader', margin: [20, 0, 20, 40] },
+            { text: 'ASSINATURA DO SERVIDOR(A):',alignment: 'center', margin: [40, 0, 0, 15] },
+            { text:'_____________________________________________________________________',alignment: 'center', margin: [20, 0, 20, 30] },
 
-            { text: 'ASSINATURA DO RESPONSÁVEL PELO DEPARTAMENTO(A):',alignment: 'center', margin: [0, 10, 0, 20] },
-            { text: '____________________________________________________________________________________',alignment: 'center',style:'subheader', margin: [0, 2, 0, 40] },
+
+            { text: 'ASSINATURA DO RESPONSÁVEL PELO DEPARTAMENTO(A):',alignment: 'center', margin: [0, 10, 0, 15] },
+            { text:'_____________________________________________________________________',alignment: 'center', margin: [20, 0, 20, 30] },
 
             { text: 'Campo a ser preenchido excluvivamente pelo prefeito',alignment:'center', fontSize: 9, bold:true, margin: [0, 0, 0, 15] },
 
-            {text: 'DEFERIDO ( ) INDEFERIDO( )  Data: ___/___/2024  Assinatura :________________________________________________' ,alignment: 'left',margin: [0, 0, 0, 20] },
+            {text: 'DEFERIDO (  ) INDEFERIDO (   )  Data: ___/___/2024        ASSINATURA :_______________________________________________________' ,fontSize: 9, margin: [0, 0, 0, 30] },
 
-            {text:'ASSINATURA DO PREFEITO',alignment:'center',margin: [0, 0, 0, 5]},
-            { text: '______________________________________________',alignment: 'center', margin: [0, 0, 0, 0] },
 
-            { text: dataTexto, alignment: 'right', margin: [0, 0, 0, 0] },
+            {text:'ASSINATURA DO PREFEITO',alignment:'center',style:'estilo',margin: [0, 0, 0, 20]},
+            { text:'_________________________________________________________________________________',alignment: 'center', margin: [20, 0, 20, 20],    
+            },
+
 
 
         ],
-        styles: {
-            header: {
-            
-                fontSize: 14,
-                bold: true,
-                alignment: 'center',
-                margin: [0, 20, 0, 20],
-                
-            
-            },
-            subheader: {
-                 bold:true,
-                fontSize: 8,
-                margin: [0, 5, 0, 5],
-               
-            }
-        },
         pageSize: 'A4',
         font: 'Arial',  // Define a fonte padrão para o documento
+        pageOrientation: 'portrait',
+    
+        styles: {
+            header: {
+                fontSize: 12,
+                 bold: true,
+                alignment: 'center',
+                margin: [0, 20, 0, 20],
+                color: '#00418d'
+            },
+            subheader: {
+                bold: true,
+                fontSize: 8,
+                margin: [0, 5, 0, 5],
+                color: '#00418d'
+             },
+             estilo: {
+                bold: false,
+                fontSize: 12,
+             }
 
-        pageOrientation: 'portrait'
-    };
-   
+            },
+            pageSize: 'A4',
+            font: 'Arial',  // Define a fonte padrão para o documento
+    
+            pageOrientation: 'portrait'
+        };
+       
+
+        
 
     // Gera o PDF
     pdfMake.createPdf(docDefinition).download('relatorio_viagem.pdf');
